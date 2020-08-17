@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>  "COVID-01 PROJECT" </title>
+	
+	</head>
+	
+	<body>
+		<div class="header">
+		<h1>COVID-01 PROJECT</h1>
+		<p>Search the top 10 authors with the most publications for a specific disease.</p>
+		</div>
+		
+		<div class="container">
+		<form name="InputForm", autocomplete="off" onsubmit="event.preventDefault(); myFunction()">
+		<label for="dis"> <h3> Enter disease: </h3> </label>
+		<input type="text" name="disease" id="dis">
+		<button type="submit" id="myButton"> Submit </button>
+		</form>
+		</div>
+		<div id="myTable"> </div>
+
+	<script>
+	
+		var xmlhttp;
+
+		function myFunction(){
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = onComplete;
+			disease = document.getElementById("dis").value;
+			xmlhttp.open("GET", "/top_authors?disease="+disease, true);
+			xmlhttp.send(null);
+		}
+		
+		function ValidateInput(){
+		var insert = document.forms["InputForm"]["disease"].value;
+		if(insert == "" || insert == "covid-19") {
+		alert("Please insert a valid input");
+		return false;
+			}
+			else return true;
+		}
+		
+		function onComplete(event){
+		var input = ValidateInput();
+			if (xmlhttp.readyState == 4 && input == true)
+				createTable();
+		}
+		
+		function createTable(){
+			var k=1;
+			var myhtml = "<table><tr><th>Authors</th><th>Publications</th><th>Titles</th></tr>";
+			var response = JSON.parse(xmlhttp.responseText);
+			for (x in response){
+				if(response[x].authors != "" && k<11){
+					myhtml = myhtml + "<tr><td>" + response[x].authors + "</td><td>" + response[x].value_occurrence + "</td><td>" + response[x].titles + "</td></tr>";
+					k=k+1;
+				}
+			}
+			myhtml = myhtml + "</table>";
+			document.getElementById("myTable").innerHTML = myhtml;
+		}
+	</script>		
+	</body>
+	
+</html>
