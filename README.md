@@ -15,4 +15,12 @@
 
 
 ## Οδηγίες Εγκατάστασης
+Κατ' αρχάς, προκειμένου να εκτελεστεί η εφαρμογή θα πρέπει, μέσω του control panel του Xampp, να τεθούν σε λειτουργία ο Apache και η MySQL. Στη συνέχεια θα πρέπει να φορτωθεί η βάση δεδομένων μέσω του γραφικού περιβάλλοντος phpmyadmin ή μέσω του MySQL server χρησιμοποιώντας το terminal. Στην περίπτωση αυτή, η εντολή εγκατάστασης τη βάσης είναι η εξής και εκτελείται μέσα στο φάκελο Database του repository project :<br/> <br/> mysql -u root -p covid-01 < covid-01.sql , όπου covid-01 το όνομα της βάσης δεδομένων.<br/> <br/>
+Οι υπόλοιπες εντολές για την εγκατάσταση και εκτέλεση του κώδικα είναι οι εξής:<br/>
+1. git clone https://github.com/DimitriosGiannis/Appathon_project.git
+2. cd .\Appathon_project\appathon_project
+3. npm install
+4. node main.js
+
+Αφού εκτελεστούν οι παραπάνω εντολές, το site της εφαρμογής θα βρίσκεται διαθέσιμο στο http://localhost:3003/site.html
 
